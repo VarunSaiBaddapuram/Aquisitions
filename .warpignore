@@ -1,0 +1,13 @@
+# Warp ignore file - exclude sensitive files from codebase operations
+
+# Environment files
+.env
+.env.*
+
+# Sensitive directories
+secrets/
+credentials/
+
+# Private keys and certificates
+*.pem
+*.key
