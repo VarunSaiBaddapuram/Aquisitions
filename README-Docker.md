@@ -20,6 +20,7 @@ The application supports two distinct deployment modes:
 For the fastest setup experience, use the provided setup scripts:
 
 ### Windows (PowerShell)
+
 ```powershell
 # Development environment
 .\setup-docker.ps1 dev
@@ -32,6 +33,7 @@ For the fastest setup experience, use the provided setup scripts:
 ```
 
 ### Linux/macOS (Bash)
+
 ```bash
 # Development environment
 ./setup-docker.sh dev
@@ -44,6 +46,7 @@ For the fastest setup experience, use the provided setup scripts:
 ```
 
 The setup scripts will:
+
 - ✅ Check Docker dependencies
 - ✅ Create environment files from templates
 - ✅ Guide you through configuration
@@ -60,35 +63,36 @@ The development setup uses **Neon Local**, which creates ephemeral database bran
 ### Setup
 
 1. **Configure Environment Variables**
-   
+
    Copy and configure the development environment file:
+
    ```bash
    cp .env.development.example .env.development
    ```
 
    Update `.env.development` with your Neon credentials:
+
    ```env
    # Required Neon configuration
    NEON_API_KEY=your_neon_api_key_here
    NEON_PROJECT_ID=your_neon_project_id_here
    PARENT_BRANCH_ID=your_parent_branch_id_here
-   
+
    # Optional: Your Arcjet key for security features
    ARCJET_KEY=your_arcjet_key_here
    ```
 
 2. **Start Development Environment**
-   
+
    ```bash
    # Using npm script (recommended)
    npm run docker:dev
-   
+
    # Or using docker-compose directly
    docker-compose -f docker-compose-dev.yml --env-file .env.development up --build
    ```
 
 3. **Access the Application**
-   
    - Application: http://localhost:3000
    - Health check: http://localhost:3000/health
    - Neon Local Database: localhost:5432
@@ -123,25 +127,26 @@ The production setup connects directly to your Neon Cloud database without using
 ### Setup
 
 1. **Configure Environment Variables**
-   
+
    Create `.env.production` or set environment variables directly in your deployment system:
+
    ```env
    # Production database URL from Neon Cloud
    DATABASE_URL=postgres://username:password@ep-xxx-xxx.region.aws.neon.tech/dbname?sslmode=require
-   
+
    # Strong JWT secret (generate a secure random string)
    JWT_SECRET=your-super-secure-jwt-secret-here
-   
+
    # Arcjet key for security features
    ARCJET_KEY=your_arcjet_key_here
    ```
 
 2. **Start Production Environment**
-   
+
    ```bash
    # Using npm script (recommended)
    npm run docker:prod
-   
+
    # Or using docker-compose directly
    docker-compose -f docker-compose-prod.yml --env-file .env.production up -d --build
    ```
@@ -180,7 +185,7 @@ Run database migrations in both environments:
 docker-compose -f docker-compose-dev.yml exec app npm run db:generate
 docker-compose -f docker-compose-dev.yml exec app npm run db:migrate
 
-# Production  
+# Production
 docker-compose -f docker-compose-prod.yml exec app npm run db:generate
 docker-compose -f docker-compose-prod.yml exec app npm run db:migrate
 ```
@@ -189,44 +194,48 @@ docker-compose -f docker-compose-prod.yml exec app npm run db:migrate
 
 ### Development (.env.development)
 
-| Variable | Description | Required | Default |
-|----------|-------------|----------|---------|
-| `NODE_ENV` | Environment mode | Yes | `development` |
-| `PORT` | Application port | Yes | `3000` |
-| `LOG_LEVEL` | Logging level | Yes | `debug` |
-| `DATABASE_URL` | Neon Local connection string | Yes | Auto-configured |
-| `NEON_API_KEY` | Your Neon API key | Yes | - |
-| `NEON_PROJECT_ID` | Your Neon project ID | Yes | - |
-| `PARENT_BRANCH_ID` | Parent branch for ephemeral branches | Yes | - |
-| `JWT_SECRET` | JWT signing secret | Yes | `dev-secret-...` |
-| `ARCJET_KEY` | Arcjet security key | No | - |
+| Variable           | Description                          | Required | Default          |
+| ------------------ | ------------------------------------ | -------- | ---------------- |
+| `NODE_ENV`         | Environment mode                     | Yes      | `development`    |
+| `PORT`             | Application port                     | Yes      | `3000`           |
+| `LOG_LEVEL`        | Logging level                        | Yes      | `debug`          |
+| `DATABASE_URL`     | Neon Local connection string         | Yes      | Auto-configured  |
+| `NEON_API_KEY`     | Your Neon API key                    | Yes      | -                |
+| `NEON_PROJECT_ID`  | Your Neon project ID                 | Yes      | -                |
+| `PARENT_BRANCH_ID` | Parent branch for ephemeral branches | Yes      | -                |
+| `JWT_SECRET`       | JWT signing secret                   | Yes      | `dev-secret-...` |
+| `ARCJET_KEY`       | Arcjet security key                  | No       | -                |
 
 ### Production (.env.production)
 
-| Variable | Description | Required | Example |
-|----------|-------------|----------|---------|
-| `NODE_ENV` | Environment mode | Yes | `production` |
-| `PORT` | Application port | Yes | `3000` |
-| `LOG_LEVEL` | Logging level | Yes | `info` |
-| `DATABASE_URL` | Neon Cloud connection string | Yes | `postgres://user:pass@ep-xxx.neon.tech/db` |
-| `JWT_SECRET` | Strong JWT secret | Yes | `your-secure-secret` |
-| `ARCJET_KEY` | Arcjet security key | Yes | `ajkey_...` |
+| Variable       | Description                  | Required | Example                                    |
+| -------------- | ---------------------------- | -------- | ------------------------------------------ |
+| `NODE_ENV`     | Environment mode             | Yes      | `production`                               |
+| `PORT`         | Application port             | Yes      | `3000`                                     |
+| `LOG_LEVEL`    | Logging level                | Yes      | `info`                                     |
+| `DATABASE_URL` | Neon Cloud connection string | Yes      | `postgres://user:pass@ep-xxx.neon.tech/db` |
+| `JWT_SECRET`   | Strong JWT secret            | Yes      | `your-secure-secret`                       |
+| `ARCJET_KEY`   | Arcjet security key          | Yes      | `ajkey_...`                                |
 
 ## Troubleshooting
 
 ### Common Issues
 
 1. **Neon Local Connection Failed**
+
    ```
    Error: connect ECONNREFUSED 127.0.0.1:5432
    ```
+
    - Ensure `NEON_API_KEY` and `NEON_PROJECT_ID` are correct
    - Check that the Neon Local container is healthy: `docker-compose ps`
 
 2. **Database Migration Errors**
+
    ```
    Error: relation "users" does not exist
    ```
+
    - Run migrations: `docker-compose exec app npm run db:migrate`
    - For fresh start: `docker-compose down && docker-compose up --build`
 
@@ -234,6 +243,7 @@ docker-compose -f docker-compose-prod.yml exec app npm run db:migrate
    ```
    Error: EACCES: permission denied, mkdir '/app/logs'
    ```
+
    - This is handled by the Dockerfile, but ensure logs directory exists locally
 
 ### Debug Commands
@@ -260,18 +270,21 @@ console.log('Connection successful!');
 ## Deployment Strategies
 
 ### Local Development
+
 ```bash
 # Quick start for development
 npm run docker:dev
 ```
 
 ### Staging Environment
+
 ```bash
 # Use production compose with staging environment
 docker-compose -f docker-compose-prod.yml --env-file .env.staging up -d
 ```
 
 ### Production Deployment
+
 ```bash
 # Using environment variables from CI/CD
 export DATABASE_URL="postgres://..."

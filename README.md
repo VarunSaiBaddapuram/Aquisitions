@@ -5,14 +5,17 @@ This file provides guidance to WARP (warp.dev) when working with code in this re
 ## Key Commands
 
 ### Install dependencies
+
 - `npm install`
 
 ### Run the API locally
+
 - Start the development server (Node watch mode, reloads on changes):
   - `npm run dev`
 - By default, the server listens on `http://localhost:${PORT}` where `PORT` comes from the environment (falls back to `3000`).
 
 ### Linting and formatting
+
 - Run ESLint on the whole project:
   - `npm run lint`
 - Run ESLint and automatically fix simple issues:
@@ -23,6 +26,7 @@ This file provides guidance to WARP (warp.dev) when working with code in this re
   - `npm run format:check`
 
 ### Database (Drizzle + Neon/Postgres)
+
 Drizzle is configured via `drizzle.config.js` and models in `src/models/*.js`. The database connection uses `process.env.DATABASE_URL`.
 
 - Generate Drizzle SQL from the schema:
@@ -33,11 +37,13 @@ Drizzle is configured via `drizzle.config.js` and models in `src/models/*.js`. T
   - `npm run db:studio`
 
 ### Tests
+
 There is currently no test runner or `npm test` script configured, although ESLint includes a `tests/**/*.js` override. Before assuming how to run a single test, confirm with the user which test framework (if any) has been added.
 
 ## High-Level Architecture
 
 ### Entry point and server
+
 - `src/index.js`
   - Loads environment variables via `dotenv/config`.
   - Imports `src/server.js` (side-effect) to start the HTTP server.
@@ -46,6 +52,7 @@ There is currently no test runner or `npm test` script configured, although ESLi
   - Reads `process.env.PORT || 3000` and calls `app.listen(PORT, ...)`.
 
 ### Express application and routes
+
 - `src/app.js`
   - Constructs the Express app and applies common middleware:
     - `helmet` for basic security headers.
@@ -61,6 +68,7 @@ There is currently no test runner or `npm test` script configured, although ESLi
   - Mounts authentication routes under `/api/auth` using `authRoutes` from `src/routes/auth.routes.js`.
 
 ### Routing and controllers
+
 - `src/routes/auth.routes.js`
   - Declares the auth API surface:
     - `POST /api/auth/sign-up` → `signup` controller.
@@ -81,6 +89,7 @@ There is currently no test runner or `npm test` script configured, although ESLi
     - Clears the `token` cookie via `cookies.clear` and returns a success message.
 
 ### Services and data layer
+
 - `src/services/auth.service.js`
   - Implements business logic for user creation and authentication.
   - Uses `bcrypt` to hash and compare passwords.
@@ -100,6 +109,7 @@ There is currently no test runner or `npm test` script configured, although ESLi
   - Points Drizzle at `./src/models/*.js` for schema and `./drizzle` as the migrations output directory.
 
 ### Security, rate limiting, and Arcjet
+
 - `src/config/arcjet.js`
   - Configures the Arcjet client with `process.env.ARCJET_KEY` and a set of rules:
     - `shield` to protect against common attacks (e.g., SQL injection).
@@ -115,6 +125,7 @@ There is currently no test runner or `npm test` script configured, although ESLi
     - Blocks and logs bot traffic, shield violations, and rate-limit violations with appropriate HTTP 403 responses.
 
 ### Logging
+
 - `src/config/logger.js`
   - Defines a Winston logger with:
     - JSON logs including timestamps and error stacks.
@@ -123,6 +134,7 @@ There is currently no test runner or `npm test` script configured, although ESLi
   - Used across controllers and services for structured logging.
 
 ### Utilities and validation
+
 - `src/utils/cookies.js`
   - Centralizes cookie options (e.g., `httpOnly`, `sameSite`, `secure` in production, 15-minute `maxAge`).
   - Exposes helpers `set`, `clear`, and `get` to keep cookie handling consistent.
@@ -135,6 +147,7 @@ There is currently no test runner or `npm test` script configured, although ESLi
   - Declares Zod schemas for auth payloads (currently signup + signin) and is used by the auth controller.
 
 ### Module resolution
+
 - `package.json` defines `imports` aliases for cleaner imports:
   - `#config/*` → `./src/config/*`
   - `#controllers/*` → `./src/controllers/*`

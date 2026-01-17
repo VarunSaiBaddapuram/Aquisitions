@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 
 services:
   # Your application in production mode
@@ -19,7 +19,11 @@ services:
       - app-network
     restart: unless-stopped
     healthcheck:
-      test: ["CMD-SHELL", "node -e \"require('http').get('http://localhost:3000/health', (res) => { process.exit(res.statusCode === 200 ? 0 : 1) })\""]
+      test:
+        [
+          "CMD-SHELL",
+          'node -e "require(''http'').get(''http://localhost:3000/health'', (res) => { process.exit(res.statusCode === 200 ? 0 : 1) })"',
+        ]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -40,10 +44,10 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '1.0'
+          cpus: "1.0"
           memory: 512M
         reservations:
-          cpus: '0.25'
+          cpus: "0.25"
           memory: 128M
 
   # Optional: Nginx reverse proxy for production

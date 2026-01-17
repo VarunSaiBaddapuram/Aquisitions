@@ -1,5 +1,5 @@
-import logger from '#config/logger.js';
-import { jwttoken } from '#utils/jwt.js';
+import logger from "#config/logger.js";
+import { jwttoken } from "#utils/jwt.js";
 
 // Attach decoded JWT payload (id, email, role) to req.user if a valid token exists.
 // This middleware is non-strict: it never sends a response itself.
@@ -11,8 +11,8 @@ export const attachUserFromToken = (req, res, next) => {
 
     // 2) Fallback to Authorization: Bearer <token>
     if (!token) {
-      const authHeader = req.get('Authorization') || '';
-      if (authHeader.startsWith('Bearer ')) {
+      const authHeader = req.get("Authorization") || "";
+      if (authHeader.startsWith("Bearer ")) {
         token = authHeader.substring(7);
       }
     }
@@ -36,7 +36,7 @@ export const attachUserFromToken = (req, res, next) => {
     return next();
   } catch (e) {
     // Invalid/expired token -> log and treat as unauthenticated
-    logger.warn('Invalid or expired JWT token', {
+    logger.warn("Invalid or expired JWT token", {
       error: e.message,
       ip: req.ip,
       path: req.path,
@@ -51,8 +51,8 @@ export const attachUserFromToken = (req, res, next) => {
 export const requireAuth = (req, res, next) => {
   if (!req.user) {
     return res.status(401).json({
-      error: 'Unauthorized',
-      message: 'Authentication required',
+      error: "Unauthorized",
+      message: "Authentication required",
     });
   }
 
