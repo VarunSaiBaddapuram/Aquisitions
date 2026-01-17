@@ -295,3 +295,22 @@
 {"level":"info","message":"::ffff:127.0.0.1 - - [10/Jan/2026:18:27:22 +0000] \"GET /health HTTP/1.1\" 500 92 \"-\" \"Thunder Client (https://www.thunderclient.com)\"","service":"acquisitions-api"}
 {"level":"info","message":"::ffff:127.0.0.1 - - [10/Jan/2026:18:27:22 +0000] \"GET /health HTTP/1.1\" 500 92 \"-\" \"Thunder Client (https://www.thunderclient.com)\"","service":"acquisitions-api"}
 {"level":"info","message":"::ffff:127.0.0.1 - - [10/Jan/2026:18:27:22 +0000] \"GET /health HTTP/1.1\" 500 92 \"-\" \"Thunder Client (https://www.thunderclient.com)\"","service":"acquisitions-api"}
+{"level":"info","message":"Hello from Acquisitions!","service":"acquisitions-api"}
+{"level":"info","message":"::ffff:172.20.0.1 - - [13/Jan/2026:11:52:42 +0000] \"GET / HTTP/1.1\" 200 36 \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36\"","service":"acquisitions-api"}
+{"level":"info","message":"::ffff:172.20.0.1 - - [13/Jan/2026:11:52:43 +0000] \"GET /favicon.ico HTTP/1.1\" 404 150 \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36\"","service":"acquisitions-api"}
+{"level":"info","message":"::ffff:172.20.0.1 - - [13/Jan/2026:11:52:54 +0000] \"GET /health HTTP/1.1\" 200 76 \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36\"","service":"acquisitions-api"}
+{"level":"info","message":"::ffff:172.20.0.1 - - [13/Jan/2026:11:58:00 +0000] \"POST /api/auth/sign-up HTTP/1.1\" 400 63 \"-\" \"Thunder Client (https://www.thunderclient.com)\"","service":"acquisitions-api"}
+{"level":"info","message":"User ramesh@gmail.com created successfully","service":"acquisitions-api"}
+{"level":"info","message":"User registered successfully: ramesh@gmail.com","service":"acquisitions-api"}
+{"level":"info","message":"::ffff:172.20.0.1 - - [13/Jan/2026:11:58:20 +0000] \"POST /api/auth/sign-up HTTP/1.1\" 201 103 \"-\" \"Thunder Client (https://www.thunderclient.com)\"","service":"acquisitions-api"}
+{"level":"info","message":"Hello from Acquisitions!","service":"acquisitions-api"}
+{"level":"info","message":"::1 - - [14/Jan/2026:10:03:58 +0000] \"GET / HTTP/1.1\" 200 36 \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36\"","service":"acquisitions-api"}
+{"level":"info","message":"::1 - - [14/Jan/2026:10:03:59 +0000] \"GET /favicon.ico HTTP/1.1\" 404 150 \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36\"","service":"acquisitions-api"}
+{"level":"info","message":"Getting users...","service":"acquisitions-api"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [14/Jan/2026:10:52:53 +0000] \"GET /api/users/ HTTP/1.1\" 200 517 \"-\" \"Thunder Client (https://www.thunderclient.com)\"","service":"acquisitions-api"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [17/Jan/2026:07:01:29 +0000] \"GET /health HTTP/1.1\" 200 74 \"-\" \"-\"","service":"acquisitions-api"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [17/Jan/2026:07:01:29 +0000] \"GET /api HTTP/1.1\" 200 42 \"-\" \"-\"","service":"acquisitions-api"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [17/Jan/2026:07:01:29 +0000] \"GET /nonexistent HTTP/1.1\" 404 27 \"-\" \"-\"","service":"acquisitions-api"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [17/Jan/2026:07:06:39 +0000] \"GET /health HTTP/1.1\" 200 74 \"-\" \"-\"","service":"acquisitions-api"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [17/Jan/2026:07:06:39 +0000] \"GET /api HTTP/1.1\" 200 42 \"-\" \"-\"","service":"acquisitions-api"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [17/Jan/2026:07:06:39 +0000] \"GET /nonexistent HTTP/1.1\" 404 27 \"-\" \"-\"","service":"acquisitions-api"}
