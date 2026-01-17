@@ -9,7 +9,7 @@ jobs:
   build-and-push:
     runs-on: ubuntu-latest
     env:
-      DOCKER_IMAGE: ${{ secrets.Docker_USERNAME }}/deployable-devops-real-project
+      DOCKER_IMAGE: ${{ secrets.Docker_USERNAME }}/kubernetes-demo-api
 
     steps:
       - name: Checkout repository
